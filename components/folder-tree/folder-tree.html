@@ -1,1 +1,19 @@
-<p>folder-tree works!</p>
+<ul class="tree">
+  <li *ngFor="let item of data">
+    <div class="tree-item" (click)="toggle(item)">
+      <span class="icon">
+        <span *ngIf="isFolder(item)">
+          {{ item.expanded ? '📂' : '📁' }}
+        </span>
+        <span *ngIf="!isFolder(item)">📄</span>
+      </span>
+      {{ item.name }}
+    </div>
+
+    <app-folder-tree
+      *ngIf="isFolder(item) && item.expanded"
+      [data]="item.children"
+      class="child-tree">
+    </app-folder-tree>
+  </li>
+</ul>

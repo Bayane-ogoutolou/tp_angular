@@ -1,0 +1,20 @@
+.tree {
+  list-style: none;
+  padding-left: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.tree-item {
+  cursor: pointer;
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.child-tree {
+  margin-left: 20px;
+}

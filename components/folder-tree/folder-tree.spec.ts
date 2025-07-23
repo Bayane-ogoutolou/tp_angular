@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FolderTree } from './folder-tree';
+import { FolderTreeComponent } from './folder-tree';
 
 describe('FolderTree', () => {
-  let component: FolderTree;
-  let fixture: ComponentFixture<FolderTree>;
+  let component: FolderTreeComponent;
+  let fixture: ComponentFixture<FolderTreeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FolderTree]
+      imports: [FolderTreeComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FolderTree);
+    fixture = TestBed.createComponent(FolderTreeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
