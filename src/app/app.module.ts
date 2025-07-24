@@ -12,6 +12,6 @@ import { ExplorerComponent } from './explorer/explorer.component';
     AppComponent,      // ici dans imports et non dans declarations
     ExplorerComponent  // idem ici
   ],
-  bootstrap: [AppComponent]
+  // bootstrap: [AppComponent]
 })
 export class AppModule {}

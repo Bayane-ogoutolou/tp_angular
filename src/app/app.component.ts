@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
+import { ExplorerComponent } from "./explorer/explorer.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  template: `
+  template:
+  
+   `
     <div class="container mt-4">
       <h1>Explorateur de fichiers</h1>
       <app-explorer></app-explorer>
     </div>
   `,
   imports: [
-    // Ici tu peux importer des modules Angular ou tes composants nécessaires
-  ]
+    ExplorerComponent
+]
 })
 export class AppComponent {}

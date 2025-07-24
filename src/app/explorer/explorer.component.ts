@@ -41,7 +41,10 @@ export class ExplorerComponent implements OnInit {
     if (!parent.children) {
       parent.children = [];
     }
-    parent.children.push({ name, type });
+    parent.children.push({
+      name, type,
+      open: undefined
+    });
   }
 
   deleteItem(parentArray: FileItem[], index: number) {
