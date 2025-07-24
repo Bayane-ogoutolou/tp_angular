@@ -1,0 +1,38 @@
+<ul class="list-group">
+  <ng-container *ngFor="let item of files; let i = index">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span *ngIf="item.type === 'folder'" (click)="toggleFolder(item)" style="cursor:pointer;">
+        <i class="bi" [ngClass]="item.open ? 'bi-folder-fill' : 'bi-folder'"></i>
+        {{ item.name }}
+      </span>
+      <span *ngIf="item.type === 'file'">
+        <i class="bi bi-file-earmark"></i>
+        {{ item.name }}
+      </span>
+      <div>
+        <button *ngIf="item.type === 'folder'" class="btn btn-sm btn-primary me-1" (click)="addFile(item, 'file')">+ Fichier</button>
+        <button *ngIf="item.type === 'folder'" class="btn btn-sm btn-secondary me-1" (click)="addFile(item, 'folder')">+ Dossier</button>
+        <button class="btn btn-sm btn-danger" (click)="deleteItem(files, i)">Supprimer</button>
+      </div>
+    </li>
+    <ul *ngIf="item.children && item.open" class="list-group ms-4 mt-2">
+      <ng-container *ngFor="let child of item.children; let j = index">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span *ngIf="child.type === 'folder'" (click)="toggleFolder(child)" style="cursor:pointer;">
+            <i class="bi" [ngClass]="child.open ? 'bi-folder-fill' : 'bi-folder'"></i>
+            {{ child.name }}
+          </span>
+          <span *ngIf="child.type === 'file'">
+            <i class="bi bi-file-earmark"></i>
+            {{ child.name }}
+          </span>
+          <div>
+            <button *ngIf="child.type === 'folder'" class="btn btn-sm btn-primary me-1" (click)="addFile(child, 'file')">+ Fichier</button>
+            <button *ngIf="child.type === 'folder'" class="btn btn-sm btn-secondary me-1" (click)="addFile(child, 'folder')">+ Dossier</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(item.children, j)">Supprimer</button>
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+  </ng-container>
+</ul>

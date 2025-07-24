@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <h3 class="mb-4">Explorateur de Fichiers</h3>
+  <ul class="list-group">
+    <ng-container *ngFor="let file of files; let i = index">
+      <ng-template [ngTemplateOutlet]="renderItem" [ngTemplateOutletContext]="{ item: file, parentArray: files, index: i }"></ng-template>
+    </ng-container>
+  </ul>
+</div>
+
+<ng-template #renderItem let-item let-parentArray="parentArray" let-index="index">
+  <li class="list-group-item">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <span *ngIf="item.type === 'folder'" (click)="toggleFolder(item)" style="cursor: pointer;">
+          <i class="me-1" [ngClass]="{'bi-folder-fill': item.open, 'bi-folder': !item.open}"></i>
+          {{ item.name }}
+        </span>
+
+        <span *ngIf="item.type === 'file'">
+          <i class="bi bi-file-earmark-text me-1"></i>
+          {{ item.name }}
+        </span>
+      </div>
+
+      <div>
+        <button *ngIf="item.type === 'folder'" class="btn btn-sm btn-outline-primary me-1" (click)="addFile(item, 'file')">+ Fichier</button>
+        <button *ngIf="item.type === 'folder'" class="btn btn-sm btn-outline-secondary me-1" (click)="addFile(item, 'folder')">+ Dossier</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteItem(parentArray, index)">🗑</button>
+      </div>
+    </div>
+
+    <ul class="list-group mt-2 ms-4" *ngIf="item.type === 'folder' && item.open">
+      <ng-container *ngFor="let child of item.children; let j = index">
+        <ng-template [ngTemplateOutlet]="renderItem" [ngTemplateOutletContext]="{ item: child, parentArray: item.children, index: j }"></ng-template>
+      </ng-container>
+    </ul>
+  </li>
+</ng-template>
