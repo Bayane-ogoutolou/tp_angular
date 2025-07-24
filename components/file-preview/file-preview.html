@@ -1,2 +1,23 @@
+<<<<<<< HEAD
 <h2>Explorateur de fichiers</h2>
 <app-folder-tree [data]="folderData"></app-folder-tree>
+=======
+<div *ngIf="file && file.type === 'file'; else noFile">
+    <h3>Previsualisation du fichier : {{ file.name }}</h3>
+    
+     <div *ngIf="isImage(); else textOrUnsupported">
+        <img [src]="file.content" class="image-preview" alt="Apercu de l'image"/>
+    </div>
+
+    <ng-template #textOrUnsupported>
+        <pre *ngIf="inText(); else unsupported">{{ file.name }}</pre>
+    <ng-template>
+
+    <ng-template #unsupported>
+        <p>Le type de ce fichier n'estp pas pris en charge</p>
+    <ng-template>
+</div>
+<ng-template #noSelection>
+    <p>Aucun fichier selectionne</p>
+</ng-template>
+>>>>>>> credo
